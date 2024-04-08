@@ -1,0 +1,114 @@
+{
+  "pizzas": [
+    {
+      "name": "Spinach Delight",
+      "ingredients": [
+        "Potato",
+        "Tomato"
+      ],
+      "description": "Pizza magic, create, bake, savor, perfection!",
+      "price": 90,
+      "calories": 467,
+      "protein": 34,
+      "fat": 2,
+      "carbs": 38
+    },
+    {
+      "name": "Margarita Classic",
+      "ingredients": [
+        "Tomato Sauce",
+        "Mozzarella Cheese",
+        "Fresh Basil"
+      ],
+      "description": "Simple and delicious classic pizza with tomato sauce, mozzarella cheese, and fresh basil.",
+      "price": 85,
+      "calories": 410,
+      "protein": 22,
+      "fat": 15,
+      "carbs": 47
+    },
+    {
+      "name": "Meat Lover's Feast",
+      "ingredients": [
+        "Pepperoni",
+        "Italian Sausage",
+        "Bacon",
+        "Ham",
+        "Mozzarella Cheese",
+        "Tomato Sauce"
+      ],
+      "description": "A carnivore's delight! Loaded with pepperoni, Italian sausage, bacon, and ham.",
+      "price": 110,
+      "calories": 580,
+      "protein": 42,
+      "fat": 28,
+      "carbs": 35
+    },
+    {
+      "name": "Vegetarian Supreme",
+      "ingredients": [
+        "Bell Peppers",
+        "Onions",
+        "Mushrooms",
+        "Black Olives",
+        "Tomato Sauce",
+        "Mozzarella Cheese"
+      ],
+      "description": "A medley of fresh vegetables including bell peppers, onions, mushrooms, and black olives.",
+      "price": 95,
+      "calories": 420,
+      "protein": 18,
+      "fat": 20,
+      "carbs": 45
+    },
+    {
+      "name": "Hawaiian Paradise",
+      "ingredients": [
+        "Ham",
+        "Pineapple",
+        "Mozzarella Cheese",
+        "Tomato Sauce"
+      ],
+      "description": "Tropical flavors with ham and pineapple, a taste of paradise!",
+      "price": 95,
+      "calories": 430,
+      "protein": 23,
+      "fat": 17,
+      "carbs": 50
+    },
+    {
+      "name": "BBQ Chicken Blast",
+      "ingredients": [
+        "BBQ Sauce",
+        "Grilled Chicken",
+        "Red Onion",
+        "Mozzarella Cheese"
+      ],
+      "description": "Smokey BBQ sauce with grilled chicken and red onions.",
+      "price": 100,
+      "calories": 480,
+      "protein": 28,
+      "fat": 22,
+      "carbs": 40
+    },
+    {
+      "name": "Supreme Deluxe",
+      "ingredients": [
+        "Pepperoni",
+        "Italian Sausage",
+        "Bell Peppers",
+        "Onions",
+        "Black Olives",
+        "Mushrooms",
+        "Tomato Sauce",
+        "Mozzarella Cheese"
+      ],
+      "description": "The ultimate combination of meats and veggies topped with gooey mozzarella cheese.",
+      "price": 115,
+      "calories": 550,
+      "protein": 34,
+      "fat": 30,
+      "carbs": 45
+    }
+  ]
+}
