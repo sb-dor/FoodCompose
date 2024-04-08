@@ -11,7 +11,8 @@
       "calories": 467,
       "protein": 34,
       "fat": 2,
-      "carbs": 38
+      "carbs": 38,
+      "image": "https://github.com/sb-dor/FoodCompose/blob/master/app/src/main/res/drawable-nodpi/_8.png"
     },
     {
       "name": "Margarita Classic",
@@ -25,7 +26,8 @@
       "calories": 410,
       "protein": 22,
       "fat": 15,
-      "carbs": 47
+      "carbs": 47,
+      "image": "https://github.com/sb-dor/FoodCompose/blob/master/app/src/main/res/drawable-nodpi/_2.png"
     },
     {
       "name": "Meat Lover's Feast",
@@ -42,7 +44,8 @@
       "calories": 580,
       "protein": 42,
       "fat": 28,
-      "carbs": 35
+      "carbs": 35,
+      "image": "https://github.com/sb-dor/FoodCompose/blob/master/app/src/main/res/drawable-nodpi/_3.png"
     },
     {
       "name": "Vegetarian Supreme",
@@ -59,7 +62,8 @@
       "calories": 420,
       "protein": 18,
       "fat": 20,
-      "carbs": 45
+      "carbs": 45,
+      "image": "https://github.com/sb-dor/FoodCompose/blob/master/app/src/main/res/drawable-nodpi/_4.png"
     },
     {
       "name": "Hawaiian Paradise",
@@ -74,7 +78,8 @@
       "calories": 430,
       "protein": 23,
       "fat": 17,
-      "carbs": 50
+      "carbs": 50,
+      "image": "https://github.com/sb-dor/FoodCompose/blob/master/app/src/main/res/drawable-nodpi/_5.png"
     },
     {
       "name": "BBQ Chicken Blast",
@@ -89,7 +94,8 @@
       "calories": 480,
       "protein": 28,
       "fat": 22,
-      "carbs": 40
+      "carbs": 40,
+      "image": "https://github.com/sb-dor/FoodCompose/blob/master/app/src/main/res/drawable-nodpi/_6.png"
     },
     {
       "name": "Supreme Deluxe",
@@ -108,7 +114,8 @@
       "calories": 550,
       "protein": 34,
       "fat": 30,
-      "carbs": 45
+      "carbs": 45,
+      "image": "https://github.com/sb-dor/FoodCompose/blob/master/app/src/main/res/drawable-nodpi/_7.png"
     }
   ]
 }
