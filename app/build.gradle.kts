@@ -66,4 +66,16 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0") // view model dependency
+
+    implementation("androidx.navigation:navigation-compose:2.7.7") // put this navigation in the end
+
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9") // for making async functions
+
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+
+    implementation("com.squareup.retrofit2:converter-gson:2.3.0")
+
 }
