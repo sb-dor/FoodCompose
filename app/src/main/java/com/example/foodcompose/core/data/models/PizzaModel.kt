@@ -23,4 +23,22 @@ class PizzaModel(
     cCarbs = cCarbs,
     cImage = cImage,
 ) {
+
+
+    // means like static fields in Dart
+    companion object {
+        fun fromJson(json: Map<String, Any>): PizzaModel {
+            return PizzaModel(
+                cName = json["name"] as? String?,
+                cDescription = json["description"] as? String?,
+                cPrice = json["price"] as? Double?,
+                cCalories = json["calories"] as? Double?,
+                cProtein = json["protein"] as? Double?,
+                cFat = json["fat"] as? Double?,
+                cCarbs = json["carbs"] as? Double,
+                cImage = json["image"] as? String?
+            );
+        }
+    }
+
 }

@@ -80,6 +80,7 @@ dependencies {
 
     implementation("io.coil-kt:coil-compose:2.4.0") // for image
 
+    implementation("com.google.code.gson:gson:2.8.8")
 
 
 }

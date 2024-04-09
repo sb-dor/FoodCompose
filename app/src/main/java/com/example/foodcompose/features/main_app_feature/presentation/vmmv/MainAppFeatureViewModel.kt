@@ -6,12 +6,15 @@ import com.example.foodcompose.core.data.models.PizzaModel
 import com.example.foodcompose.features.main_app_feature.data.repo.MainAppFeatureRepoImpl
 import com.example.foodcompose.features.main_app_feature.domain.repo.MainAppFeatureRepo
 import com.example.foodcompose.features.main_app_feature.domain.usecases.get_pizzas_usecase.GetPizzaUseCase
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Deferred
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
 class MainAppFeatureViewModel : ViewModel() {
@@ -26,22 +29,25 @@ class MainAppFeatureViewModel : ViewModel() {
     init {
         mainAppFeatureRepo = MainAppFeatureRepoImpl();
         getPizzaUsecase = GetPizzaUseCase(mainAppFeatureRepo);
+
+        CoroutineScope(Dispatchers.Main).launch {
+            loadDataFromApi()
+        }
     }
+
 
     private suspend fun loadDataFromApi() {
         _currentState.update {
             uiCurrentState.value.copy(loadingApi = true)
         }
 
-        runBlocking {
-            val getPizzas: Deferred<List<PizzaModel>> = async { getPizzaUsecase.getPizzas(); }
-            val pizzas = getPizzas.await();
-            _currentState.update {
-                uiCurrentState.value.copy(
-                    listOfPizza = pizzas,
-                    loadingApi = false
-                )
-            }
+        val getPizzas = getPizzaUsecase.getPizzas();
+        println("made request for getting pizza: $getPizzas")
+        _currentState.update {
+            uiCurrentState.value.copy(
+                listOfPizza = getPizzas,
+                loadingApi = false
+            )
         }
 
     }
