@@ -1,9 +1,12 @@
 package com.example.foodcompose.features.main_app_feature.presentation.pages.screens.main_screen
 
+import android.util.Size
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -11,12 +14,17 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -25,9 +33,17 @@ import androidx.navigation.NavHostController
 import com.example.foodcompose.R
 import com.example.foodcompose.features.main_app_feature.presentation.vmmv.MainAppFeatureViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel;
+import coil.annotation.ExperimentalCoilApi
 import coil.compose.AsyncImage
+import coil.compose.AsyncImagePainter.State.Empty.painter
+import coil.compose.rememberAsyncImagePainter
+import coil.compose.rememberImagePainter
+import coil.request.ImageRequest
+import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
+import com.bumptech.glide.integration.compose.GlideImage
 
 
+@OptIn(ExperimentalGlideComposeApi::class)
 @Composable
 fun MainScreen(
     paddingValues: PaddingValues,
@@ -71,11 +87,28 @@ fun MainScreen(
                     }
                 }
             }
+            Box(
+                modifier = Modifier
+                    .width(150.dp)
+                    .height(150.dp)
+            ) {
+//                LoadImageFromInternet("https://github.com/sb-dor/FoodCompose/blob/master/app/src/main/res/drawable-nodpi/_2.png")
+
+                GlideImage(
+                    model = "https://github.com/sb-dor/FoodCompose/blob/master/app/src/main/res/drawable-nodpi/_2.png",
+                    contentDescription = "",
+                )
+            }
         }
     }
 }
 
+@OptIn(ExperimentalCoilApi::class, ExperimentalGlideComposeApi::class)
 @Composable
 fun LoadImageFromInternet(imageUrl: String?) {
-    AsyncImage(model = imageUrl, contentDescription = "no content")
+    GlideImage(
+        model = imageUrl,
+        contentDescription = "",
+    )
+
 }
