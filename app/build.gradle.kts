@@ -82,8 +82,5 @@ dependencies {
 
     implementation("com.google.code.gson:gson:2.8.8")
 
-
     implementation("com.github.bumptech.glide:compose:1.0.0-beta01")
-
-
 }
