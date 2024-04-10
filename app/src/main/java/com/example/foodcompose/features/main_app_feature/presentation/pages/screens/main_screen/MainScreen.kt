@@ -21,6 +21,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -39,6 +40,8 @@ import androidx.lifecycle.viewmodel.compose.viewModel;
 import coil.annotation.ExperimentalCoilApi
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
+import com.example.foodcompose.features.invoice_feature.presentation.mvvm.InvoiceFeatureViewModel
+import com.example.foodcompose.features.main_app_feature.presentation.pages.screens.main_screen.components.MainScreenPizzaLoadedComponent
 
 
 @OptIn(ExperimentalGlideComposeApi::class)
@@ -46,106 +49,52 @@ import com.bumptech.glide.integration.compose.GlideImage
 fun MainScreen(
     paddingValues: PaddingValues,
     navigationController: NavHostController,
-    viewModel: MainAppFeatureViewModel = viewModel()
+    viewModel: MainAppFeatureViewModel = viewModel(),
+
 ) {
 
     val mainAppFeatureState by viewModel.uiCurrentState.collectAsState()
 
-    LazyColumn(
-        modifier = Modifier
-            .padding(paddingValues)
-            .padding(horizontal = 10.dp)
-    ) {
-        item {
-            Spacer(modifier = Modifier.height(30.dp))
-            Text(
-                stringResource(R.string.pizza_main_scren_title),
-                fontSize = 40.sp,
-                fontWeight = FontWeight.Bold,
-                lineHeight = 40.sp,
-            )
-            Spacer(modifier = Modifier.height(30.dp))
-            Box(
+    Column(modifier = Modifier.fillMaxSize()) {
+        Box(
+            modifier = Modifier
+                .weight(1f)
+                .fillMaxWidth()
+        ) {
+            LazyColumn(
                 modifier = Modifier
-//                    .height(160.dp)
-                    .fillMaxWidth()
+                    .padding(paddingValues)
+                    .padding(horizontal = 10.dp)
             ) {
-                LazyRow {
-                    itemsIndexed(mainAppFeatureState.listOfPizza) { index, item ->
-                        Surface(
-                            modifier = Modifier
-                                .fillMaxSize()
-                                .align(Alignment.TopStart)
-                                .padding(vertical = 10.dp, horizontal = 5.dp)
-                                .width(150.dp),
-                            shape = RoundedCornerShape(
-                                topStart = 100.dp,
-                                topEnd = 100.dp,
-                                bottomEnd = 15.dp,
-                                bottomStart = 15.dp
-                            ),
-                            shadowElevation = 8.dp,
-
-                            ) {
-                            Column(modifier = Modifier.padding(start = 10.dp, end = 10.dp)) {
-                                Box(
-                                    modifier = Modifier
-                                        .width(150.dp)
-                                        .height(150.dp)
-                                ) {
-                                    LoadImageFromInternet(item.image)
-                                }
-                                Text(
-                                    text = "${item.name}", fontSize = 13.sp,
-                                    fontWeight = FontWeight.Bold,
-                                    maxLines = 1,
-                                    overflow = TextOverflow.Ellipsis,
-                                )
-                                Text(
-                                    text = "${item.description}",
-                                    fontSize = 10.sp,
-                                    fontWeight = FontWeight.W300,
-                                    maxLines = 2,
-                                    overflow = TextOverflow.Ellipsis,
-                                    color = Color.Gray,
-                                    lineHeight = 10.sp
-                                )
-                                Spacer(modifier = Modifier.height(15.dp))
-                                Row(horizontalArrangement = Arrangement.Center) {
-                                    Box(
-                                        modifier = Modifier
-                                            .weight(1f)
-                                            .align(Alignment.CenterVertically)
-                                    ) {
-                                        Text(
-                                            text = "$${item.price}",
-                                            fontSize = 15.sp,
-                                            color = Color.Blue,
-                                            fontWeight = FontWeight.W600
-                                        )
-                                    }
-                                    IconButton(onClick = { /*TODO*/ }) {
-                                        Icon(Icons.Rounded.Add, contentDescription = null)
-                                    }
+                item {
+                    Spacer(modifier = Modifier.height(30.dp))
+                    Text(
+                        stringResource(R.string.pizza_main_scren_title),
+                        fontSize = 40.sp,
+                        fontWeight = FontWeight.Bold,
+                        lineHeight = 40.sp,
+                    )
+                    Spacer(modifier = Modifier.height(30.dp))
+                    Box(
+                        modifier = Modifier
+//                    .height(160.dp)
+                            .fillMaxWidth()
+                    ) {
+                        LazyRow {
+                            itemsIndexed(mainAppFeatureState.listOfPizza) { index, item ->
+                                MainScreenPizzaLoadedComponent(item)
+                                if (index < mainAppFeatureState.listOfPizza.size - 1) {
+                                    Spacer(modifier = Modifier.width(10.dp))
                                 }
                             }
-                        }
-                        if (index < mainAppFeatureState.listOfPizza.size - 1) {
-                            Spacer(modifier = Modifier.width(10.dp))
                         }
                     }
                 }
             }
         }
+        TextButton(onClick = { }, modifier = Modifier.align(Alignment.End)) {
+            Text(text = "View All ->", color = Color.Blue, fontSize = 16.sp)
+        }
     }
 }
 
-@OptIn(ExperimentalCoilApi::class, ExperimentalGlideComposeApi::class)
-@Composable
-fun LoadImageFromInternet(imageUrl: String?) {
-    GlideImage(
-        model = imageUrl,
-        contentDescription = "",
-    )
-
-}

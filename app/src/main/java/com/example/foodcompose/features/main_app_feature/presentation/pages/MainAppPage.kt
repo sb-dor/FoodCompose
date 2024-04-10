@@ -9,6 +9,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material.icons.filled.ShoppingCart
+import androidx.compose.material3.Badge
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -16,6 +18,8 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
@@ -25,9 +29,12 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.foodcompose.features.invoice_feature.presentation.mvvm.InvoiceFeatureViewModel
 import com.example.foodcompose.features.main_app_feature.presentation.pages.screens.food_about_screen.FoodAboutScreen
 import com.example.foodcompose.features.main_app_feature.presentation.pages.screens.food_screen.FoodScreen
 import com.example.foodcompose.features.main_app_feature.presentation.pages.screens.main_screen.MainScreen
+import com.example.foodcompose.features.main_app_feature.presentation.vmmv.MainAppFeatureViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel as viewModel
 
 
 enum class AppScreenPath {
@@ -70,6 +77,10 @@ private fun NavigationForMainAppPage(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AppTopBar() {
+
+
+    val viewModel: InvoiceFeatureViewModel = viewModel();
+
     TopAppBar(
         title = {
             Box(modifier = Modifier.fillMaxWidth()) {
@@ -90,12 +101,22 @@ fun AppTopBar() {
                             color = Color.Blue
                         )
                     }
-                    IconButton(onClick = { /*TODO*/ }) {
-                        Icon(
-                            Icons.Default.Menu,
-                            contentDescription = "Menu Desc",
-                            modifier = Modifier.size(30.dp)
-                        )
+                    Box {
+                        IconButton(onClick = { /*TODO*/ }) {
+                            Icon(
+                                Icons.Default.ShoppingCart,
+                                contentDescription = "Menu Desc",
+                                modifier = Modifier.size(30.dp)
+                            )
+                        }
+                        if (viewModel.invoiceDetailsList.isNotEmpty()) {
+                            Badge {
+                                Text(
+                                    text = "${viewModel.invoiceDetailsList.size}",
+                                    color = Color.White
+                                )
+                            }
+                        }
                     }
                 }
             }
