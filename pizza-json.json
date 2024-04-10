@@ -12,7 +12,7 @@
       "protein": 34,
       "fat": 2,
       "carbs": 38,
-      "image": "https://github.com/sb-dor/FoodCompose/blob/master/app/src/main/res/drawable-nodpi/_8.png?raw=true"
+      "image": "https://raw.githubusercontent.com/sb-dor/FoodCompose/master/app/src/main/res/drawable-nodpi/_2.png"
     },
     {
       "name": "Margarita Classic",
@@ -27,7 +27,7 @@
       "protein": 22,
       "fat": 15,
       "carbs": 47,
-      "image": "https://github.com/sb-dor/FoodCompose/blob/master/app/src/main/res/drawable-nodpi/_2.png?raw=true"
+      "image": "https://raw.githubusercontent.com/sb-dor/FoodCompose/master/app/src/main/res/drawable-nodpi/_3.png"
     },
     {
       "name": "Meat Lover's Feast",
@@ -45,7 +45,7 @@
       "protein": 42,
       "fat": 28,
       "carbs": 35,
-      "image": "https://github.com/sb-dor/FoodCompose/blob/master/app/src/main/res/drawable-nodpi/_3.png?raw=true"
+      "image": "https://raw.githubusercontent.com/sb-dor/FoodCompose/master/app/src/main/res/drawable-nodpi/_4.png"
     },
     {
       "name": "Vegetarian Supreme",
@@ -63,7 +63,7 @@
       "protein": 18,
       "fat": 20,
       "carbs": 45,
-      "image": "https://github.com/sb-dor/FoodCompose/blob/master/app/src/main/res/drawable-nodpi/_4.png?raw=true"
+      "image": "https://raw.githubusercontent.com/sb-dor/FoodCompose/master/app/src/main/res/drawable-nodpi/_5.png"
     },
     {
       "name": "Hawaiian Paradise",
@@ -79,7 +79,7 @@
       "protein": 23,
       "fat": 17,
       "carbs": 50,
-      "image": "https://github.com/sb-dor/FoodCompose/blob/master/app/src/main/res/drawable-nodpi/_5.png?raw=true"
+      "image": "https://raw.githubusercontent.com/sb-dor/FoodCompose/master/app/src/main/res/drawable-nodpi/_6.png"
     },
     {
       "name": "BBQ Chicken Blast",
@@ -95,7 +95,7 @@
       "protein": 28,
       "fat": 22,
       "carbs": 40,
-      "image": "https://github.com/sb-dor/FoodCompose/blob/master/app/src/main/res/drawable-nodpi/_6.png?raw=true"
+      "image": "https://raw.githubusercontent.com/sb-dor/FoodCompose/master/app/src/main/res/drawable-nodpi/_6.png"
     },
     {
       "name": "Supreme Deluxe",
@@ -115,7 +115,7 @@
       "protein": 34,
       "fat": 30,
       "carbs": 45,
-      "image": "https://github.com/sb-dor/FoodCompose/blob/master/app/src/main/res/drawable-nodpi/_7.png?raw=true"
+      "image": "https://raw.githubusercontent.com/sb-dor/FoodCompose/master/app/src/main/res/drawable-nodpi/_7.png"
     }
   ]
 }

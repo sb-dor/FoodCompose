@@ -95,7 +95,7 @@ fun MainScreen(
 //                LoadImageFromInternet("https://github.com/sb-dor/FoodCompose/blob/master/app/src/main/res/drawable-nodpi/_2.png")
 
                 GlideImage(
-                    model = "https://github.com/sb-dor/FoodCompose/blob/master/app/src/main/res/drawable-nodpi/_2.png",
+                    model = "https://raw.githubusercontent.com/sb-dor/FoodCompose/dc09efd77499c75469cfe1a360ccbe257fd80466/app/src/main/res/drawable-nodpi/_2.png",
                     contentDescription = "",
                 )
             }
