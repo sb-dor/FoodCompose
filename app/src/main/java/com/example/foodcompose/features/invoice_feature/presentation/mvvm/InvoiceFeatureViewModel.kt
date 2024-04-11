@@ -6,9 +6,10 @@ import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.snapshots.SnapshotStateList
+import androidx.compose.runtime.toMutableStateList
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.example.foodcompose.core.domain.entities.PizzaEntity
+import com.example.foodcompose.features.invoice_feature.data.models.InvoiceDetailModel
 import com.example.foodcompose.features.invoice_feature.domain.entities.InvoiceDetailEntity
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -24,27 +25,40 @@ class InvoiceFeatureViewModel : ViewModel() {
 
     fun addProductToInvoiceDetail(pizza: PizzaEntity) {
 
-        val invoiceDetail = InvoiceDetailEntity(
-            pizza = pizza,
-            qty = 1.0,
-            price = pizza.price
-        );
 
-        uiState.value.invoiceDetails.add(
-            invoiceDetail
-        )
+        val tempList = uiState.value.invoiceDetails
+
+        val element = tempList.firstOrNull { e -> e.pizza?.id == pizza.id };
+
+        if (element == null) {
+
+
+            val invoiceDetail = InvoiceDetailEntity(
+                pizza = pizza, qty = 1.0, price = pizza.price
+            );
+
+            tempList.add(
+                invoiceDetail
+            )
+        } else {
+            // in order to update something you have to use copy with or clone that entity
+            element.qty = (element.qty ?: 0.0) + 1;
+            tempList[tempList.indexOfFirst { e -> e.pizza?.id == element.pizza?.id }] =
+                InvoiceDetailModel.fromEntity(element)!!.copyWith();
+        }
+
         _uiState.update { currentState ->
             currentState.copy(
-                invoiceDetails = uiState.value.invoiceDetails,
+                invoiceDetails = tempList
             )
         }
     }
 
-
-    fun getPizzaTotal(pizza: PizzaEntity? = null): Double {
-        var total: Double = 0.0;
-//        var element = _uiState.value.invoiceDetails.firstOrNull { e -> e.pizza. }
-        return total;
+    fun findPizza(pizza: PizzaEntity? = null): InvoiceDetailModel? {
+        val element = _uiState.value.invoiceDetails.firstOrNull { e -> e.pizza?.id == pizza?.id }
+            ?: return null;
+        return InvoiceDetailModel.fromEntity(element);
     }
+
 
 }

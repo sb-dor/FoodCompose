@@ -31,7 +31,7 @@ class PizzaModel(
     companion object {
         fun fromJson(json: Map<String, Any>): PizzaModel {
             return PizzaModel(
-                cId = json["id"] as? Int?,
+                cId = (json["id"] as? Double?)?.toInt(),
                 cName = json["name"] as? String?,
                 cDescription = json["description"] as? String?,
                 cPrice = json["price"] as? Double?,

@@ -31,6 +31,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.annotation.ExperimentalCoilApi
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
+import com.example.foodcompose.core.components.AutoSizeText
 import com.example.foodcompose.core.domain.entities.PizzaEntity
 import com.example.foodcompose.features.invoice_feature.presentation.mvvm.InvoiceFeatureViewModel
 
@@ -40,6 +41,8 @@ fun MainScreenPizzaLoadedComponent(
 ) {
 
     val currentStateInvoiceViewModelState by invoiceDetailsViewModel.uiState.collectAsState();
+
+    val findPizzaInCartList = invoiceDetailsViewModel.findPizza(pizza = item);
 
     Surface(
         modifier = Modifier
@@ -85,12 +88,23 @@ fun MainScreenPizzaLoadedComponent(
                         .weight(1f)
                         .align(Alignment.CenterVertically)
                 ) {
-                    Text(
-                        text = "$${item.price}",
-                        fontSize = 15.sp,
-                        color = Color.Blue,
-                        fontWeight = FontWeight.W600
-                    )
+                    if (findPizzaInCartList == null)
+                        AutoSizeText(
+                            text = "$${item.price}",
+                            fontSize = 15.sp,
+                            color = Color.Blue,
+                            fontWeight = FontWeight.W600
+                        )
+                    else
+                        Row {
+                            AutoSizeText(
+                                text = "${findPizzaInCartList.qty?.toInt()}" +
+                                        "/$${findPizzaInCartList.total()}",
+                                fontSize = 15.sp,
+                                color = Color.Blue,
+                                fontWeight = FontWeight.W600
+                            )
+                        }
                 }
                 IconButton(onClick = { invoiceDetailsViewModel.addProductToInvoiceDetail(item) }) {
                     Icon(Icons.Rounded.Add, contentDescription = null)
