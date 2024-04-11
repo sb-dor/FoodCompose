@@ -78,7 +78,8 @@ fun CartItemComponent(
                     ) {
                         Row(
                             horizontalArrangement = Arrangement.Center,
-                            verticalAlignment = Alignment.CenterVertically
+                            verticalAlignment = Alignment.CenterVertically,
+                            modifier = Modifier.padding(vertical = 5.dp)
                         ) {
                             Spacer(modifier = Modifier.width(5.dp))
                             IconButton(
@@ -87,9 +88,9 @@ fun CartItemComponent(
                             ) {
                                 Icon(Icons.Rounded.Delete, contentDescription = null)
                             }
-                            Spacer(modifier = Modifier.width(5.dp))
+                            Spacer(modifier = Modifier.width(15.dp))
                             Text(text = "${model?.qty?.toInt()}")
-                            Spacer(modifier = Modifier.width(5.dp))
+                            Spacer(modifier = Modifier.width(15.dp))
                             IconButton(
                                 onClick = {
                                     invoiceDetailsViewModel.addProductToInvoiceDetail(item?.pizza)
