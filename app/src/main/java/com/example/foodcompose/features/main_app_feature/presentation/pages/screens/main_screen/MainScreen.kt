@@ -10,18 +10,23 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material.icons.rounded.Add
+import androidx.compose.material3.Badge
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -41,13 +46,13 @@ import coil.annotation.ExperimentalCoilApi
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
 import com.example.foodcompose.features.invoice_feature.presentation.mvvm.InvoiceFeatureViewModel
+import com.example.foodcompose.features.main_app_feature.presentation.pages.AppScreenPath
 import com.example.foodcompose.features.main_app_feature.presentation.pages.screens.main_screen.components.MainScreenPizzaLoadedComponent
 
 
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
 fun MainScreen(
-    paddingValues: PaddingValues,
     navigationController: NavHostController,
     viewModel: MainAppFeatureViewModel = viewModel(),
     invoiceDetailsViewModel: InvoiceFeatureViewModel
@@ -57,6 +62,9 @@ fun MainScreen(
 
 
     Column(modifier = Modifier.fillMaxSize()) {
+
+        AppTopBar(invoiceDetailsViewModel, navigationController)
+
         Box(
             modifier = Modifier
                 .weight(1f)
@@ -64,7 +72,6 @@ fun MainScreen(
         ) {
             LazyColumn(
                 modifier = Modifier
-                    .padding(paddingValues)
                     .padding(horizontal = 10.dp)
             ) {
                 item {
@@ -102,3 +109,53 @@ fun MainScreen(
     }
 }
 
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun AppTopBar(viewModel: InvoiceFeatureViewModel, navigationController: NavHostController) {
+    val cartState by viewModel.uiState.collectAsState()
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(vertical = 10.dp, horizontal = 15.dp)
+    ) {
+        Row {
+            Column(
+                modifier = Modifier.weight(1f)
+            ) {
+                Text(
+                    text = "PIZZA",
+                    fontWeight = FontWeight.ExtraBold,
+                    fontSize = 28.sp,
+                    lineHeight = 0.1.sp
+                )
+                Text(
+                    text = "Upgrade my plan",
+                    fontSize = 12.sp,
+                    lineHeight = 0.5.sp,
+                    color = Color.Blue
+                )
+            }
+            Box {
+                IconButton(onClick = {
+
+                    navigationController.navigate(AppScreenPath.CartScreen.name)
+
+                }) {
+                    Icon(
+                        Icons.Default.ShoppingCart,
+                        contentDescription = "Menu Desc",
+                        modifier = Modifier.size(30.dp)
+                    )
+                }
+                if (cartState.invoiceDetails.isNotEmpty()) {
+                    Badge {
+                        Text(
+                            text = "${cartState.invoiceDetails.size}", color = Color.White
+                        )
+                    }
+                }
+            }
+        }
+    }
+}

@@ -23,18 +23,16 @@ class InvoiceFeatureViewModel : ViewModel() {
     private val _uiState = MutableStateFlow(InvoiceFeatureModel())
     val uiState: StateFlow<InvoiceFeatureModel> = _uiState.asStateFlow()
 
-    fun addProductToInvoiceDetail(pizza: PizzaEntity) {
+    fun addProductToInvoiceDetail(pizza: PizzaEntity? = null) {
 
 
         val tempList = uiState.value.invoiceDetails
 
-        val element = tempList.firstOrNull { e -> e.pizza?.id == pizza.id };
+        val element = tempList.firstOrNull { e -> e.pizza?.id == pizza?.id };
 
         if (element == null) {
-
-
             val invoiceDetail = InvoiceDetailEntity(
-                pizza = pizza, qty = 1.0, price = pizza.price
+                pizza = pizza, qty = 1.0, price = pizza?.price
             );
 
             tempList.add(

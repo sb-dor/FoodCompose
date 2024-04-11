@@ -5,5 +5,5 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 
 @Composable
-fun FoodAboutScreen(paddingValues: PaddingValues, navHostController: NavHostController) {
+fun FoodAboutScreen(navHostController: NavHostController) {
 }

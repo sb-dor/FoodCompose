@@ -121,5 +121,4 @@ fun LoadImageFromInternet(imageUrl: String?) {
         model = imageUrl,
         contentDescription = "",
     )
-
 }

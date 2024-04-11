@@ -32,10 +32,11 @@ import com.example.foodcompose.features.main_app_feature.presentation.pages.scre
 import com.example.foodcompose.features.main_app_feature.presentation.pages.screens.food_screen.FoodScreen
 import com.example.foodcompose.features.main_app_feature.presentation.pages.screens.main_screen.MainScreen
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.foodcompose.features.invoice_feature.presentation.pages.InvoiceFeaturePage
 
 
 enum class AppScreenPath {
-    MainScreen, FoodScreen, FoodAboutScreen
+    MainScreen, FoodScreen, FoodAboutScreen, CartScreen,
 }
 
 @Composable
@@ -48,21 +49,15 @@ fun MainAppPage() {
 
 
     //
-    Scaffold(topBar = {
-        AppTopBar(invoiceDetailsViewModel)
-    }) { paddingValues ->
-        NavigationForMainAppPage(
-            paddingValues,
-            navigationController,
-            invoiceDetailViewModel = invoiceDetailsViewModel
-        )
-    }
+    NavigationForMainAppPage(
+        navigationController,
+        invoiceDetailViewModel = invoiceDetailsViewModel
+    )
 
 }
 
 @Composable
 private fun NavigationForMainAppPage(
-    paddingValues: PaddingValues,
     navigationController: NavHostController,
     invoiceDetailViewModel: InvoiceFeatureViewModel
 ) {
@@ -71,65 +66,19 @@ private fun NavigationForMainAppPage(
     ) {
         composable(route = AppScreenPath.MainScreen.name) {
             MainScreen(
-                paddingValues = paddingValues,
                 navigationController = navigationController,
                 invoiceDetailsViewModel = invoiceDetailViewModel
             )
         }
         composable(route = AppScreenPath.FoodScreen.name) {
-            FoodScreen(paddingValues = paddingValues, navHostController = navigationController)
+            FoodScreen(navHostController = navigationController)
         }
         composable(route = AppScreenPath.FoodAboutScreen.name) {
-            FoodAboutScreen(paddingValues = paddingValues, navHostController = navigationController)
+            FoodAboutScreen(navHostController = navigationController)
+        }
+        composable(route = AppScreenPath.CartScreen.name) {
+            InvoiceFeaturePage(navHostController = navigationController, invoiceDetailViewModel)
         }
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun AppTopBar(viewModel: InvoiceFeatureViewModel) {
-
-
-    val cartState by viewModel.uiState.collectAsState()
-
-    TopAppBar(
-        title = {
-            Box(modifier = Modifier.fillMaxWidth()) {
-                Row {
-                    Column(
-                        modifier = Modifier.weight(1f)
-                    ) {
-                        Text(
-                            text = "PIZZA",
-                            fontWeight = FontWeight.ExtraBold,
-                            fontSize = 28.sp,
-                            lineHeight = 0.1.sp
-                        )
-                        Text(
-                            text = "Upgrade my plan",
-                            fontSize = 12.sp,
-                            lineHeight = 0.5.sp,
-                            color = Color.Blue
-                        )
-                    }
-                    Box {
-                        IconButton(onClick = { /*TODO*/ }) {
-                            Icon(
-                                Icons.Default.ShoppingCart,
-                                contentDescription = "Menu Desc",
-                                modifier = Modifier.size(30.dp)
-                            )
-                        }
-                        if (cartState.invoiceDetails.isNotEmpty()) {
-                            Badge {
-                                Text(
-                                    text = "${cartState.invoiceDetails.size}", color = Color.White
-                                )
-                            }
-                        }
-                    }
-                }
-            }
-        },
-    )
-}
