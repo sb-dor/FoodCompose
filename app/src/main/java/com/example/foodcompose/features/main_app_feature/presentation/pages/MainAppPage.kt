@@ -76,10 +76,10 @@ private fun NavigationForMainAppPage(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AppTopBar() {
+fun AppTopBar(viewModel: InvoiceFeatureViewModel = viewModel()) {
 
 
-    val viewModel: InvoiceFeatureViewModel = viewModel();
+    val cartState by viewModel.uiState.collectAsState()
 
     TopAppBar(
         title = {
@@ -109,14 +109,14 @@ fun AppTopBar() {
                                 modifier = Modifier.size(30.dp)
                             )
                         }
-                        if (viewModel.invoiceDetailsList.isNotEmpty()) {
-                            Badge {
-                                Text(
-                                    text = "${viewModel.invoiceDetailsList.size}",
-                                    color = Color.White
-                                )
-                            }
+//                        if (cartState.isNotEmpty()) {
+                        Badge {
+                            Text(
+                                text = "${cartState.invoiceDetails.size}",
+                                color = Color.White
+                            )
                         }
+//                        }
                     }
                 }
             }

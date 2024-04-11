@@ -34,8 +34,9 @@ import com.example.foodcompose.features.invoice_feature.presentation.mvvm.Invoic
 @Composable
 fun MainScreenPizzaLoadedComponent(
     item: PizzaEntity,
+    invoiceDetailsViewModel: InvoiceFeatureViewModel = viewModel()
 ) {
-    val invoiceDetailsViewModel: InvoiceFeatureViewModel = viewModel()
+
 
     Surface(
         modifier = Modifier
