@@ -3,6 +3,7 @@ package com.example.foodcompose.core.data.models
 import com.example.foodcompose.core.domain.entities.PizzaEntity
 
 class PizzaModel(
+    cId: Int? = null,
     cName: String? = null,
     cIngredients: List<String> = emptyList(),
     cDescription: String? = null,
@@ -13,6 +14,7 @@ class PizzaModel(
     cCarbs: Double? = null,
     cImage: String? = null,
 ) : PizzaEntity(
+    cId = cId,
     cName = cName,
     cIngredients = cIngredients,
     cDescription = cDescription,
@@ -29,6 +31,7 @@ class PizzaModel(
     companion object {
         fun fromJson(json: Map<String, Any>): PizzaModel {
             return PizzaModel(
+                cId = json["id"] as? Int?,
                 cName = json["name"] as? String?,
                 cDescription = json["description"] as? String?,
                 cPrice = json["price"] as? Double?,

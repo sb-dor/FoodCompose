@@ -8,5 +8,5 @@ import com.example.foodcompose.core.domain.entities.PizzaEntity
 import com.example.foodcompose.features.invoice_feature.domain.entities.InvoiceDetailEntity
 
 data class InvoiceFeatureModel (
-    var invoiceDetails: SnapshotStateList<InvoiceDetailEntity> = mutableStateListOf()
+    val invoiceDetails: SnapshotStateList<InvoiceDetailEntity> = mutableStateListOf(),
 )

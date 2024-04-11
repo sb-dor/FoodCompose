@@ -50,10 +50,11 @@ fun MainScreen(
     paddingValues: PaddingValues,
     navigationController: NavHostController,
     viewModel: MainAppFeatureViewModel = viewModel(),
-
+    invoiceDetailsViewModel: InvoiceFeatureViewModel
 ) {
 
     val mainAppFeatureState by viewModel.uiCurrentState.collectAsState()
+
 
     Column(modifier = Modifier.fillMaxSize()) {
         Box(
@@ -82,7 +83,10 @@ fun MainScreen(
                     ) {
                         LazyRow {
                             itemsIndexed(mainAppFeatureState.listOfPizza) { index, item ->
-                                MainScreenPizzaLoadedComponent(item)
+                                MainScreenPizzaLoadedComponent(
+                                    item,
+                                    invoiceDetailsViewModel
+                                )
                                 if (index < mainAppFeatureState.listOfPizza.size - 1) {
                                     Spacer(modifier = Modifier.width(10.dp))
                                 }

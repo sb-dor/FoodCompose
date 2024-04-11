@@ -1,6 +1,7 @@
 {
   "pizzas": [
     {
+      "id": 1,
       "name": "Spinach Delight",
       "ingredients": [
         "Potato",
@@ -15,6 +16,7 @@
       "image": "https://raw.githubusercontent.com/sb-dor/FoodCompose/master/app/src/main/res/drawable-nodpi/_2.png"
     },
     {
+      "id": 2,
       "name": "Margarita Classic",
       "ingredients": [
         "Tomato Sauce",
@@ -30,6 +32,7 @@
       "image": "https://raw.githubusercontent.com/sb-dor/FoodCompose/master/app/src/main/res/drawable-nodpi/_3.png"
     },
     {
+      "id": 3,
       "name": "Meat Lover's Feast",
       "ingredients": [
         "Pepperoni",
@@ -48,6 +51,7 @@
       "image": "https://raw.githubusercontent.com/sb-dor/FoodCompose/master/app/src/main/res/drawable-nodpi/_4.png"
     },
     {
+      "id": 4,
       "name": "Vegetarian Supreme",
       "ingredients": [
         "Bell Peppers",
@@ -66,6 +70,7 @@
       "image": "https://raw.githubusercontent.com/sb-dor/FoodCompose/master/app/src/main/res/drawable-nodpi/_5.png"
     },
     {
+      "id": 5,
       "name": "Hawaiian Paradise",
       "ingredients": [
         "Ham",
@@ -82,6 +87,7 @@
       "image": "https://raw.githubusercontent.com/sb-dor/FoodCompose/master/app/src/main/res/drawable-nodpi/_6.png"
     },
     {
+      "id": 6,
       "name": "BBQ Chicken Blast",
       "ingredients": [
         "BBQ Sauce",
@@ -98,6 +104,7 @@
       "image": "https://raw.githubusercontent.com/sb-dor/FoodCompose/master/app/src/main/res/drawable-nodpi/_6.png"
     },
     {
+      "id": 7,
       "name": "Supreme Deluxe",
       "ingredients": [
         "Pepperoni",

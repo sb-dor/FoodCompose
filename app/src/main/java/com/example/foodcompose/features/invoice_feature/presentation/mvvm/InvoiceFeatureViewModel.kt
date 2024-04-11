@@ -23,13 +23,28 @@ class InvoiceFeatureViewModel : ViewModel() {
     val uiState: StateFlow<InvoiceFeatureModel> = _uiState.asStateFlow()
 
     fun addProductToInvoiceDetail(pizza: PizzaEntity) {
-        uiState.value.invoiceDetails.add(InvoiceDetailEntity())
-        _uiState.update {currentState ->
-            currentState.copy(invoiceDetails = uiState.value.invoiceDetails)
+
+        val invoiceDetail = InvoiceDetailEntity(
+            pizza = pizza,
+            qty = 1.0,
+            price = pizza.price
+        );
+
+        uiState.value.invoiceDetails.add(
+            invoiceDetail
+        )
+        _uiState.update { currentState ->
+            currentState.copy(
+                invoiceDetails = uiState.value.invoiceDetails,
+            )
         }
+    }
 
 
-        println("length of current invoice detail list: ${_uiState.value.invoiceDetails.size}")
+    fun getPizzaTotal(pizza: PizzaEntity? = null): Double {
+        var total: Double = 0.0;
+//        var element = _uiState.value.invoiceDetails.firstOrNull { e -> e.pizza. }
+        return total;
     }
 
 }

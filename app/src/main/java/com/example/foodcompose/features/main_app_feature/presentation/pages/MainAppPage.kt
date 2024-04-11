@@ -1,6 +1,5 @@
 package com.example.foodcompose.features.main_app_feature.presentation.pages
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -8,7 +7,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material3.Badge
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -33,8 +31,7 @@ import com.example.foodcompose.features.invoice_feature.presentation.mvvm.Invoic
 import com.example.foodcompose.features.main_app_feature.presentation.pages.screens.food_about_screen.FoodAboutScreen
 import com.example.foodcompose.features.main_app_feature.presentation.pages.screens.food_screen.FoodScreen
 import com.example.foodcompose.features.main_app_feature.presentation.pages.screens.main_screen.MainScreen
-import com.example.foodcompose.features.main_app_feature.presentation.vmmv.MainAppFeatureViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel as viewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 
 
 enum class AppScreenPath {
@@ -46,24 +43,38 @@ fun MainAppPage() {
     //
     val navigationController = rememberNavController();
 
+
+    val invoiceDetailsViewModel: InvoiceFeatureViewModel = viewModel();
+
+
     //
     Scaffold(topBar = {
-        AppTopBar()
+        AppTopBar(invoiceDetailsViewModel)
     }) { paddingValues ->
-        NavigationForMainAppPage(paddingValues, navigationController)
+        NavigationForMainAppPage(
+            paddingValues,
+            navigationController,
+            invoiceDetailViewModel = invoiceDetailsViewModel
+        )
     }
 
 }
 
 @Composable
 private fun NavigationForMainAppPage(
-    paddingValues: PaddingValues, navigationController: NavHostController
+    paddingValues: PaddingValues,
+    navigationController: NavHostController,
+    invoiceDetailViewModel: InvoiceFeatureViewModel
 ) {
     NavHost(
         navController = navigationController, startDestination = AppScreenPath.MainScreen.name
     ) {
         composable(route = AppScreenPath.MainScreen.name) {
-            MainScreen(paddingValues = paddingValues, navigationController = navigationController)
+            MainScreen(
+                paddingValues = paddingValues,
+                navigationController = navigationController,
+                invoiceDetailsViewModel = invoiceDetailViewModel
+            )
         }
         composable(route = AppScreenPath.FoodScreen.name) {
             FoodScreen(paddingValues = paddingValues, navHostController = navigationController)
@@ -76,7 +87,7 @@ private fun NavigationForMainAppPage(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AppTopBar(viewModel: InvoiceFeatureViewModel = viewModel()) {
+fun AppTopBar(viewModel: InvoiceFeatureViewModel) {
 
 
     val cartState by viewModel.uiState.collectAsState()
@@ -109,14 +120,13 @@ fun AppTopBar(viewModel: InvoiceFeatureViewModel = viewModel()) {
                                 modifier = Modifier.size(30.dp)
                             )
                         }
-//                        if (cartState.isNotEmpty()) {
-                        Badge {
-                            Text(
-                                text = "${cartState.invoiceDetails.size}",
-                                color = Color.White
-                            )
+                        if (cartState.invoiceDetails.isNotEmpty()) {
+                            Badge {
+                                Text(
+                                    text = "${cartState.invoiceDetails.size}", color = Color.White
+                                )
+                            }
                         }
-//                        }
                     }
                 }
             }

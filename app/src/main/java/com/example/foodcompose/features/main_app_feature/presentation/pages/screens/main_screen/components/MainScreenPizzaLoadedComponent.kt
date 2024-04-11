@@ -17,6 +17,9 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -33,10 +36,10 @@ import com.example.foodcompose.features.invoice_feature.presentation.mvvm.Invoic
 
 @Composable
 fun MainScreenPizzaLoadedComponent(
-    item: PizzaEntity,
-    invoiceDetailsViewModel: InvoiceFeatureViewModel = viewModel()
+    item: PizzaEntity, invoiceDetailsViewModel: InvoiceFeatureViewModel,
 ) {
 
+    val currentStateInvoiceViewModelState by invoiceDetailsViewModel.uiState.collectAsState();
 
     Surface(
         modifier = Modifier
@@ -44,14 +47,10 @@ fun MainScreenPizzaLoadedComponent(
             .padding(vertical = 10.dp, horizontal = 5.dp)
             .width(150.dp),
         shape = RoundedCornerShape(
-            topStart = 100.dp,
-            topEnd = 100.dp,
-            bottomEnd = 15.dp,
-            bottomStart = 15.dp
+            topStart = 100.dp, topEnd = 100.dp, bottomEnd = 15.dp, bottomStart = 15.dp
         ),
         shadowElevation = 8.dp,
-
-        ) {
+    ) {
         Column(
             modifier = Modifier.padding(
                 start = 10.dp, end = 10.dp

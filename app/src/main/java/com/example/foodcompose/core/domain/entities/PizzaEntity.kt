@@ -1,6 +1,7 @@
 package com.example.foodcompose.core.domain.entities
 
 open class PizzaEntity(
+    cId: Int? = null,
     cName: String? = null,
     cIngredients: List<String> = emptyList(),
     cDescription: String? = null,
@@ -11,6 +12,7 @@ open class PizzaEntity(
     cCarbs: Double? = null,
     cImage: String? = null,
 ) {
+    val id: Int? = cId;
     val name: String? = cName
     val ingredients: List<String> = cIngredients
     val description: String? = cDescription
