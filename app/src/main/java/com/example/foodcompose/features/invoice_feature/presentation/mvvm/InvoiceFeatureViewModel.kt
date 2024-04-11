@@ -52,6 +52,23 @@ class InvoiceFeatureViewModel : ViewModel() {
         }
     }
 
+    fun removeProductItem(pizza: PizzaEntity? = null) {
+        val tempList = uiState.value.invoiceDetails
+
+        val element = tempList.firstOrNull { e -> e.pizza?.id == pizza?.id } ?: return
+
+        element.qty = (element.qty ?: 0.0) - 1.0;
+
+        if ((element.qty ?: 0.0) <= 0.0) {
+            tempList.removeAll { e -> e.pizza?.id == element.pizza?.id }
+        } else {
+            tempList[tempList.indexOfFirst { e -> e.pizza?.id == element.pizza?.id }] =
+                InvoiceDetailModel.fromEntity(element)!!.copyWith();
+        }
+
+        _uiState.update { currentState -> currentState.copy(invoiceDetails = tempList) }
+    }
+
     fun findPizza(pizza: PizzaEntity? = null): InvoiceDetailModel? {
         val element = _uiState.value.invoiceDetails.firstOrNull { e -> e.pizza?.id == pizza?.id }
             ?: return null;

@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -34,13 +35,16 @@ import com.example.foodcompose.features.invoice_feature.presentation.mvvm.Invoic
 
 @Composable
 fun CartItemComponent(
-    item: InvoiceDetailEntity? = null,
-    invoiceDetailsViewModel: InvoiceFeatureViewModel
+    item: InvoiceDetailEntity? = null, invoiceDetailsViewModel: InvoiceFeatureViewModel
 ) {
 
     val model = InvoiceDetailModel.fromEntity(item);
 
-    Box(modifier = Modifier.fillMaxWidth()) {
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(end = 10.dp)
+    ) {
         Row {
             Box(
                 modifier = Modifier
@@ -59,7 +63,7 @@ fun CartItemComponent(
                         }
                         Text(text = "${model?.total()}")
                     }
-                    Spacer(modifier = Modifier.height(15.dp))
+                    Spacer(modifier = Modifier.height(5.dp))
                     Text(
                         text = "${model?.pizza?.description}",
                         fontSize = 12.sp,
@@ -76,20 +80,28 @@ fun CartItemComponent(
                             horizontalArrangement = Arrangement.Center,
                             verticalAlignment = Alignment.CenterVertically
                         ) {
-                            IconButton(onClick = { /*TODO*/ }) {
+                            Spacer(modifier = Modifier.width(5.dp))
+                            IconButton(
+                                onClick = { invoiceDetailsViewModel.removeProductItem(item?.pizza) },
+                                modifier = Modifier.size(22.dp)
+                            ) {
                                 Icon(Icons.Rounded.Delete, contentDescription = null)
                             }
+                            Spacer(modifier = Modifier.width(5.dp))
                             Text(text = "${model?.qty?.toInt()}")
-                            IconButton(onClick = {
-                                invoiceDetailsViewModel.addProductToInvoiceDetail(item?.pizza)
-                            }) {
+                            Spacer(modifier = Modifier.width(5.dp))
+                            IconButton(
+                                onClick = {
+                                    invoiceDetailsViewModel.addProductToInvoiceDetail(item?.pizza)
+                                }, modifier = Modifier.size(22.dp)
+                            ) {
                                 Icon(Icons.Rounded.Add, contentDescription = null)
                             }
+                            Spacer(modifier = Modifier.width(5.dp))
                         }
                     }
                 }
             }
-            Spacer(modifier = Modifier.width(15.dp))
         }
     }
 }
