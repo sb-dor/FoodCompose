@@ -33,6 +33,7 @@ import com.example.foodcompose.features.main_app_feature.presentation.pages.scre
 import com.example.foodcompose.features.main_app_feature.presentation.pages.screens.main_screen.MainScreen
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.foodcompose.features.invoice_feature.presentation.pages.InvoiceFeaturePage
+import com.example.foodcompose.features.main_app_feature.presentation.vmmv.MainAppFeatureViewModel
 
 
 enum class AppScreenPath {
@@ -47,11 +48,14 @@ fun MainAppPage() {
 
     val invoiceDetailsViewModel: InvoiceFeatureViewModel = viewModel();
 
+    val mainAppFeatureViewModel: MainAppFeatureViewModel = viewModel();
+
 
     //
     NavigationForMainAppPage(
         navigationController,
-        invoiceDetailViewModel = invoiceDetailsViewModel
+        invoiceDetailViewModel = invoiceDetailsViewModel,
+        mainAppFeatureViewModel = mainAppFeatureViewModel
     )
 
 }
@@ -59,7 +63,8 @@ fun MainAppPage() {
 @Composable
 private fun NavigationForMainAppPage(
     navigationController: NavHostController,
-    invoiceDetailViewModel: InvoiceFeatureViewModel
+    invoiceDetailViewModel: InvoiceFeatureViewModel,
+    mainAppFeatureViewModel: MainAppFeatureViewModel,
 ) {
     NavHost(
         navController = navigationController, startDestination = AppScreenPath.MainScreen.name
@@ -67,11 +72,16 @@ private fun NavigationForMainAppPage(
         composable(route = AppScreenPath.MainScreen.name) {
             MainScreen(
                 navigationController = navigationController,
-                invoiceDetailsViewModel = invoiceDetailViewModel
+                viewModel = mainAppFeatureViewModel,
+                invoiceDetailsViewModel = invoiceDetailViewModel,
             )
         }
         composable(route = AppScreenPath.FoodScreen.name) {
-            FoodScreen(navHostController = navigationController)
+            FoodScreen(
+                navHostController = navigationController,
+                mainAppFeatureViewModel = mainAppFeatureViewModel,
+                invoiceDetailViewModel,
+            )
         }
         composable(route = AppScreenPath.FoodAboutScreen.name) {
             FoodAboutScreen(navHostController = navigationController)
