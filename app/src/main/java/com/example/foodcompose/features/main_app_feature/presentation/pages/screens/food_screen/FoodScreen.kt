@@ -43,7 +43,9 @@ fun FoodScreen(
             itemsIndexed(mainAppFeatureViewModelState.listOfPizza) { index, item ->
                 MainScreenPizzaLoadedComponent(
                     item = item,
-                    invoiceDetailsViewModel = invoiceFeatureViewModel
+                    invoiceDetailsViewModel = invoiceFeatureViewModel,
+                    navHostController = navHostController,
+                    mainAppFeatureViewModel = mainAppFeatureViewModel
                 )
             }
         }

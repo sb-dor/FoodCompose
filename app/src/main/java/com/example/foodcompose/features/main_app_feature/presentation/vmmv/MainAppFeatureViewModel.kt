@@ -3,6 +3,7 @@ package com.example.foodcompose.features.main_app_feature.presentation.vmmv
 import androidx.compose.runtime.mutableStateListOf
 import androidx.lifecycle.ViewModel
 import com.example.foodcompose.core.data.models.PizzaModel
+import com.example.foodcompose.core.domain.entities.PizzaEntity
 import com.example.foodcompose.features.main_app_feature.data.repo.MainAppFeatureRepoImpl
 import com.example.foodcompose.features.main_app_feature.domain.repo.MainAppFeatureRepo
 import com.example.foodcompose.features.main_app_feature.domain.usecases.get_pizzas_usecase.GetPizzaUseCase
@@ -45,10 +46,15 @@ class MainAppFeatureViewModel : ViewModel() {
         println("made request for getting pizza: $getPizzas")
         _currentState.update {
             uiCurrentState.value.copy(
-                listOfPizza = getPizzas,
-                loadingApi = false
+                listOfPizza = getPizzas, loadingApi = false
             )
         }
 
+    }
+
+    fun initTempPizzaForAboutScreen(pizza: PizzaEntity) {
+        _currentState.update { currentState ->
+            currentState.copy(tempPizzaModel = PizzaModel.fromEntity(pizza))
+        }
     }
 }

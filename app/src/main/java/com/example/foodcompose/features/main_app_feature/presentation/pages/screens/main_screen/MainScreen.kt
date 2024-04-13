@@ -47,7 +47,7 @@ import com.example.foodcompose.features.main_app_feature.presentation.pages.comp
 fun MainScreen(
     navigationController: NavHostController,
     viewModel: MainAppFeatureViewModel,
-    invoiceDetailsViewModel: InvoiceFeatureViewModel
+    invoiceDetailsViewModel: InvoiceFeatureViewModel,
 ) {
 
     val mainAppFeatureState by viewModel.uiCurrentState.collectAsState()
@@ -82,7 +82,10 @@ fun MainScreen(
                         LazyRow {
                             itemsIndexed(mainAppFeatureState.listOfPizza) { index, item ->
                                 MainScreenPizzaLoadedComponent(
-                                    item, invoiceDetailsViewModel
+                                    item,
+                                    invoiceDetailsViewModel,
+                                    navHostController = navigationController,
+                                    mainAppFeatureViewModel = viewModel
                                 )
                                 if (index < mainAppFeatureState.listOfPizza.size - 1) {
                                     Spacer(modifier = Modifier.width(10.dp))

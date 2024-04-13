@@ -84,7 +84,11 @@ private fun NavigationForMainAppPage(
             )
         }
         composable(route = AppScreenPath.FoodAboutScreen.name) {
-            FoodAboutScreen(navHostController = navigationController)
+            FoodAboutScreen(
+                navHostController = navigationController,
+                invoiceFeatureViewModel = invoiceDetailViewModel,
+                mainAppFeatureViewModel = mainAppFeatureViewModel
+            )
         }
         composable(route = AppScreenPath.CartScreen.name) {
             InvoiceFeaturePage(navHostController = navigationController, invoiceDetailViewModel)
