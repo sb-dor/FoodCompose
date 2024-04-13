@@ -16,6 +16,7 @@ import com.example.foodcompose.ui.theme.FoodComposeTheme
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContent {
             FoodComposeTheme {
                 // A surface container using the 'background' color from the theme
