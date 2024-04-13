@@ -208,14 +208,39 @@ fun FoodAboutScreen(
                             }
                         }
                     }
-                    
-                    Divider(thickness = 1.dp, color = Color.Gray, modifier = Modifier.height(10.dp))
+
+                    Spacer(modifier = Modifier.height(10.dp))
                     Row {
-                        Box(modifier = Modifier.weight(1f)){
+                        Box(modifier = Modifier.weight(1f)) {
                             Text(text = "Make Yours")
                         }
+                        Icon(Icons.Default.AddCircle, contentDescription = null)
                     }
-                    
+                    Divider(
+                        thickness = 0.1.dp,
+                        color = Color.LightGray,
+                        modifier = Modifier.height(0.6.dp)
+                    )
+                    Spacer(modifier = Modifier.height(5.dp))
+                    Row {
+                        Box(modifier = Modifier.weight(1f)) {
+                            Text(text = "Ingredients")
+                        }
+                        Icon(Icons.Default.AddCircle, contentDescription = null)
+                    }
+                    Divider(
+                        thickness = 0.1.dp  ,
+                        color = Color.LightGray,
+                        modifier = Modifier.height(0.6.dp)
+                    )
+                    Spacer(modifier = Modifier.height(5.dp))
+                    Row {
+                        Box(modifier = Modifier.weight(1f)) {
+                            Text(text = "Add Extra")
+                        }
+                        Icon(Icons.Default.AddCircle, contentDescription = null)
+                    }
+
                     Spacer(modifier = Modifier.weight(1f))
                     ElevatedButton(
                         onClick = {
