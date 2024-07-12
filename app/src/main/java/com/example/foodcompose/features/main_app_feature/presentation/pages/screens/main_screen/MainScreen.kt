@@ -31,6 +31,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.example.foodcompose.R
 import com.example.foodcompose.features.main_app_feature.presentation.vmmv.MainAppFeatureViewModel
@@ -46,9 +47,10 @@ import com.example.foodcompose.features.main_app_feature.presentation.pages.comp
 @Composable
 fun MainScreen(
     navigationController: NavHostController,
-) {
-    val viewModel: MainAppFeatureViewModel = viewModel();
-    val invoiceDetailsViewModel: InvoiceFeatureViewModel = viewModel();
+
+    ) {
+    val viewModel: TopMainAppFeatureViewModel.current;
+    val invoiceDetailsViewModel: InvoiceFeatureViewModel = hiltViewModel();
 
     val mainAppFeatureState by viewModel.uiCurrentState.collectAsState()
 

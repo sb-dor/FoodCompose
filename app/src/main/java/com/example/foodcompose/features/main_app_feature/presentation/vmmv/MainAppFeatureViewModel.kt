@@ -1,12 +1,14 @@
 package com.example.foodcompose.features.main_app_feature.presentation.vmmv
 
 import androidx.compose.runtime.mutableStateListOf
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.example.foodcompose.core.data.models.PizzaModel
 import com.example.foodcompose.core.domain.entities.PizzaEntity
 import com.example.foodcompose.features.main_app_feature.data.repo.MainAppFeatureRepoImpl
 import com.example.foodcompose.features.main_app_feature.domain.repo.MainAppFeatureRepo
 import com.example.foodcompose.features.main_app_feature.domain.usecases.get_pizzas_usecase.GetPizzaUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.Dispatchers
@@ -17,8 +19,12 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import javax.inject.Inject
 
-class MainAppFeatureViewModel : ViewModel() {
+@HiltViewModel
+class MainAppFeatureViewModel @Inject constructor(
+    private val savedStateHandle: SavedStateHandle,
+) : ViewModel() {
     private lateinit var mainAppFeatureRepo: MainAppFeatureRepo;
     private var getPizzaUsecase: GetPizzaUseCase
 

@@ -28,6 +28,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import com.example.foodcompose.features.invoice_feature.presentation.mvvm.InvoiceFeatureViewModel
@@ -38,9 +39,10 @@ import com.example.foodcompose.features.main_app_feature.presentation.vmmv.MainA
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun InvoiceFeaturePage(
-    navHostController: NavHostController,
+    navHostController: NavHostController
 ) {
-    val invoiceFeatureViewModel: InvoiceFeatureViewModel = viewModel();
+
+    val invoiceFeatureViewModel: InvoiceFeatureViewModel = hiltViewModel();
 
     val invoiceCartState by invoiceFeatureViewModel.uiState.collectAsState();
 

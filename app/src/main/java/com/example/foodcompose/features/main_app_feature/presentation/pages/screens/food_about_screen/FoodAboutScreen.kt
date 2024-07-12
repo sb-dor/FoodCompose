@@ -34,6 +34,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
@@ -48,8 +49,9 @@ fun FoodAboutScreen(
     navHostController: NavHostController,
 ) {
 
-    val mainAppFeatureViewModel: MainAppFeatureViewModel = viewModel();
-    val invoiceFeatureViewModel: InvoiceFeatureViewModel = viewModel();
+    val mainAppFeatureViewModel: MainAppFeatureViewModel = hiltViewModel();
+    val invoiceFeatureViewModel: InvoiceFeatureViewModel = hiltViewModel();
+
 
     val mainAppState by mainAppFeatureViewModel.uiCurrentState.collectAsState()
 //    val invoiceDetailState by invoiceFeatureViewModel.uiState.collectAsState()
@@ -231,7 +233,7 @@ fun FoodAboutScreen(
                         Icon(Icons.Default.AddCircle, contentDescription = null)
                     }
                     Divider(
-                        thickness = 0.1.dp  ,
+                        thickness = 0.1.dp,
                         color = Color.LightGray,
                         modifier = Modifier.height(0.6.dp)
                     )

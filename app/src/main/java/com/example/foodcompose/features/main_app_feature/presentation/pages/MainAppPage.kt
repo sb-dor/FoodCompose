@@ -2,7 +2,10 @@ package com.example.foodcompose.features.main_app_feature.presentation.pages
 
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.ui.platform.LocalContext
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -13,6 +16,7 @@ import com.example.foodcompose.features.main_app_feature.presentation.pages.scre
 import com.example.foodcompose.features.main_app_feature.presentation.pages.screens.food_screen.FoodScreen
 import com.example.foodcompose.features.main_app_feature.presentation.pages.screens.main_screen.MainScreen
 import com.example.foodcompose.features.invoice_feature.presentation.pages.InvoiceFeaturePage
+import com.example.foodcompose.features.main_app_feature.presentation.vmmv.MainAppFeatureViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -21,21 +25,32 @@ enum class AppScreenPath {
 }
 
 
+val TopMainAppFeatureViewModel =
+    compositionLocalOf<MainAppFeatureViewModel> { error("ViewModel not provided") }
+val TopInvoiceFeatureViewModel =
+    compositionLocalOf<InvoiceFeatureViewModel> { error("ViewModel not provided") }
+
 @Composable
 fun MainAppPage() {
     //
     val navigationController = rememberNavController();
 
+    val invoiceFeatureViewModel: InvoiceFeatureViewModel = hiltViewModel();
 
-    val invoiceDetailsViewModel: InvoiceFeatureViewModel = viewModel();
+    val mainAppFeatureViewModel: MainAppFeatureViewModel = hiltViewModel();
 
-    invoiceDetailsViewModel.initLocalDatabase(LocalContext.current)
+    invoiceFeatureViewModel.initLocalDatabase(LocalContext.current)
     //
-    NavigationForMainAppPage(
-        navigationController,
+    CompositionLocalProvider(
+        TopMainAppFeatureViewModel provides (mainAppFeatureViewModel),
+        TopInvoiceFeatureViewModel provides (invoiceFeatureViewModel)
+    ) {
+        NavigationForMainAppPage(
+            navigationController,
 //        invoiceDetailViewModel = invoiceDetailsViewModel,
 //        mainAppFeatureViewModel = mainAppFeatureViewModel
-    )
+        )
+    }
 
 }
 

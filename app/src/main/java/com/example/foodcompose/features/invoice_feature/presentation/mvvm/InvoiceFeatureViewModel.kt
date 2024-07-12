@@ -8,6 +8,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.runtime.toMutableStateList
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelStore
 import com.example.foodcompose.core.database.LocalDatabase
@@ -26,8 +27,9 @@ import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 
 @HiltViewModel
-class InvoiceFeatureViewModel @Inject constructor() : ViewModel() {
-
+class InvoiceFeatureViewModel @Inject constructor(
+    private val savedStateHandle: SavedStateHandle,
+) : ViewModel() {
 
     private val _uiState = MutableStateFlow(InvoiceFeatureModel())
     val uiState: StateFlow<InvoiceFeatureModel> = _uiState.asStateFlow()

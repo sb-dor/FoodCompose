@@ -13,6 +13,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import com.example.foodcompose.features.invoice_feature.presentation.mvvm.InvoiceFeatureViewModel
@@ -25,8 +26,8 @@ fun FoodScreen(
     navHostController: NavHostController,
 ) {
 
-    val mainAppFeatureViewModel: MainAppFeatureViewModel = viewModel();
-    val invoiceFeatureViewModel: InvoiceFeatureViewModel = viewModel();
+    val mainAppFeatureViewModel: MainAppFeatureViewModel = hiltViewModel();
+    val invoiceFeatureViewModel: InvoiceFeatureViewModel = hiltViewModel();
 
     val mainAppFeatureViewModelState by mainAppFeatureViewModel.uiCurrentState.collectAsState();
 
