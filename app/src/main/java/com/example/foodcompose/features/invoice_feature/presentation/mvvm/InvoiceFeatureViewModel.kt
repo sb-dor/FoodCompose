@@ -14,6 +14,7 @@ import com.example.foodcompose.core.database.LocalDatabase
 import com.example.foodcompose.core.domain.entities.PizzaEntity
 import com.example.foodcompose.features.invoice_feature.data.models.InvoiceDetailModel
 import com.example.foodcompose.features.invoice_feature.domain.entities.InvoiceDetailEntity
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -22,8 +23,10 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import javax.inject.Inject
 
-class InvoiceFeatureViewModel : ViewModel() {
+@HiltViewModel
+class InvoiceFeatureViewModel @Inject constructor() : ViewModel() {
 
 
     private val _uiState = MutableStateFlow(InvoiceFeatureModel())

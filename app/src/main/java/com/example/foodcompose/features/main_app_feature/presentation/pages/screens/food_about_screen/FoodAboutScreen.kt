@@ -34,6 +34,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 import com.example.foodcompose.core.components.AutoSizeText
@@ -45,12 +46,13 @@ import com.example.foodcompose.ui.theme.amber
 @Composable
 fun FoodAboutScreen(
     navHostController: NavHostController,
-    mainAppFeatureViewModel: MainAppFeatureViewModel,
-    invoiceFeatureViewModel: InvoiceFeatureViewModel
 ) {
 
+    val mainAppFeatureViewModel: MainAppFeatureViewModel = viewModel();
+    val invoiceFeatureViewModel: InvoiceFeatureViewModel = viewModel();
+
     val mainAppState by mainAppFeatureViewModel.uiCurrentState.collectAsState()
-    val invoiceDetailState by invoiceFeatureViewModel.uiState.collectAsState()
+//    val invoiceDetailState by invoiceFeatureViewModel.uiState.collectAsState()
 
     val findPizzaInCartList = invoiceFeatureViewModel.findPizza(mainAppState.tempPizzaModel)
 

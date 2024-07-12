@@ -32,15 +32,17 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import com.example.foodcompose.features.invoice_feature.presentation.mvvm.InvoiceFeatureViewModel
 import com.example.foodcompose.features.invoice_feature.presentation.pages.components.CartItemComponent
+import com.example.foodcompose.features.main_app_feature.presentation.vmmv.MainAppFeatureViewModel
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun InvoiceFeaturePage(
-    navHostController: NavHostController, invoiceViewModel: InvoiceFeatureViewModel
+    navHostController: NavHostController,
 ) {
+    val invoiceFeatureViewModel: InvoiceFeatureViewModel = viewModel();
 
-    val invoiceCartState by invoiceViewModel.uiState.collectAsState();
+    val invoiceCartState by invoiceFeatureViewModel.uiState.collectAsState();
 
     Scaffold(topBar = {
         InvoiceFeaturePageAppBar(navHostController)
@@ -51,7 +53,7 @@ fun InvoiceFeaturePage(
                 .padding(paddingValues)
         ) {
             itemsIndexed(invoiceCartState.invoiceDetails) { index, item ->
-                CartItemComponent(item = item, invoiceViewModel)
+                CartItemComponent(item = item, invoiceFeatureViewModel)
                 if (index < invoiceCartState.invoiceDetails.size - 1) Spacer(
                     modifier = Modifier.height(10.dp)
                 )

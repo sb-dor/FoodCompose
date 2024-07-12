@@ -46,9 +46,9 @@ import com.example.foodcompose.features.main_app_feature.presentation.pages.comp
 @Composable
 fun MainScreen(
     navigationController: NavHostController,
-    viewModel: MainAppFeatureViewModel,
-    invoiceDetailsViewModel: InvoiceFeatureViewModel,
 ) {
+    val viewModel: MainAppFeatureViewModel = viewModel();
+    val invoiceDetailsViewModel: InvoiceFeatureViewModel = viewModel();
 
     val mainAppFeatureState by viewModel.uiCurrentState.collectAsState()
 

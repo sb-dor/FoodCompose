@@ -13,6 +13,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import com.example.foodcompose.features.invoice_feature.presentation.mvvm.InvoiceFeatureViewModel
 import com.example.foodcompose.features.main_app_feature.presentation.pages.composables.MainScreenPizzaLoadedComponent
@@ -22,10 +23,10 @@ import com.example.foodcompose.features.main_app_feature.presentation.vmmv.MainA
 @Composable
 fun FoodScreen(
     navHostController: NavHostController,
-    mainAppFeatureViewModel: MainAppFeatureViewModel,
-    invoiceFeatureViewModel: InvoiceFeatureViewModel,
 ) {
 
+    val mainAppFeatureViewModel: MainAppFeatureViewModel = viewModel();
+    val invoiceFeatureViewModel: InvoiceFeatureViewModel = viewModel();
 
     val mainAppFeatureViewModelState by mainAppFeatureViewModel.uiCurrentState.collectAsState();
 
@@ -40,7 +41,7 @@ fun FoodScreen(
             columns = GridCells.Fixed(2),
             contentPadding = PaddingValues(start = 10.dp, end = 10.dp)
         ) {
-            itemsIndexed(mainAppFeatureViewModelState.listOfPizza) { index, item ->
+            itemsIndexed(mainAppFeatureViewModelState.listOfPizza) { _, item ->
                 MainScreenPizzaLoadedComponent(
                     item = item,
                     invoiceDetailsViewModel = invoiceFeatureViewModel,

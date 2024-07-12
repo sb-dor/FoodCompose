@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.jetbrainsKotlinAndroid)
     id("com.google.devtools.ksp") version "1.6.21-1.0.6" // for room ksp
     id("kotlin-kapt") // for room kapt
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -95,4 +96,13 @@ dependencies {
     kapt("androidx.room:room-compiler:2.6.1")
     // To use Kotlin Symbol Processing (KSP)
     ksp("androidx.room:room-compiler:2.6.1")
+
+    // dependency injection Hilt
+    implementation("com.google.dagger:hilt-android:2.44")
+    kapt("com.google.dagger:hilt-android-compiler:2.44")
+}
+
+// Allow references to generated code
+kapt {
+    correctErrorTypes = true
 }
