@@ -39,10 +39,9 @@ import com.example.foodcompose.features.main_app_feature.presentation.vmmv.MainA
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun InvoiceFeaturePage(
-    navHostController: NavHostController
+    navHostController: NavHostController,
+    invoiceFeatureViewModel: InvoiceFeatureViewModel,
 ) {
-
-    val invoiceFeatureViewModel: InvoiceFeatureViewModel = hiltViewModel();
 
     val invoiceCartState by invoiceFeatureViewModel.uiState.collectAsState();
 

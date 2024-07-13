@@ -24,10 +24,10 @@ import com.example.foodcompose.features.main_app_feature.presentation.vmmv.MainA
 @Composable
 fun FoodScreen(
     navHostController: NavHostController,
+    mainAppFeatureViewModel: MainAppFeatureViewModel,
+    invoiceFeatureViewModel: InvoiceFeatureViewModel,
 ) {
 
-    val mainAppFeatureViewModel: MainAppFeatureViewModel = hiltViewModel();
-    val invoiceFeatureViewModel: InvoiceFeatureViewModel = hiltViewModel();
 
     val mainAppFeatureViewModelState by mainAppFeatureViewModel.uiCurrentState.collectAsState();
 

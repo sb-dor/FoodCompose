@@ -47,10 +47,9 @@ import com.example.foodcompose.ui.theme.amber
 @Composable
 fun FoodAboutScreen(
     navHostController: NavHostController,
+    mainAppFeatureViewModel: MainAppFeatureViewModel,
+    invoiceFeatureViewModel: InvoiceFeatureViewModel,
 ) {
-
-    val mainAppFeatureViewModel: MainAppFeatureViewModel = hiltViewModel();
-    val invoiceFeatureViewModel: InvoiceFeatureViewModel = hiltViewModel();
 
 
     val mainAppState by mainAppFeatureViewModel.uiCurrentState.collectAsState()

@@ -25,14 +25,18 @@ enum class AppScreenPath {
 }
 
 
-val TopMainAppFeatureViewModel =
-    compositionLocalOf<MainAppFeatureViewModel> { error("ViewModel not provided") }
-val TopInvoiceFeatureViewModel =
-    compositionLocalOf<InvoiceFeatureViewModel> { error("ViewModel not provided") }
-
 @Composable
 fun MainAppPage() {
     //
+
+    //
+    NavigationForMainAppPage()
+
+}
+
+@Composable
+private fun NavigationForMainAppPage(
+) {
     val navigationController = rememberNavController();
 
     val invoiceFeatureViewModel: InvoiceFeatureViewModel = hiltViewModel();
@@ -40,54 +44,34 @@ fun MainAppPage() {
     val mainAppFeatureViewModel: MainAppFeatureViewModel = hiltViewModel();
 
     invoiceFeatureViewModel.initLocalDatabase(LocalContext.current)
-    //
-    CompositionLocalProvider(
-        TopMainAppFeatureViewModel provides (mainAppFeatureViewModel),
-        TopInvoiceFeatureViewModel provides (invoiceFeatureViewModel)
-    ) {
-        NavigationForMainAppPage(
-            navigationController,
-//        invoiceDetailViewModel = invoiceDetailsViewModel,
-//        mainAppFeatureViewModel = mainAppFeatureViewModel
-        )
-    }
-
-}
-
-@Composable
-private fun NavigationForMainAppPage(
-    navigationController: NavHostController,
-//    invoiceDetailViewModel: InvoiceFeatureViewModel,
-//    mainAppFeatureViewModel: MainAppFeatureViewModel,
-) {
     NavHost(
         navController = navigationController, startDestination = AppScreenPath.MainScreen.name
     ) {
         composable(route = AppScreenPath.MainScreen.name) {
             MainScreen(
                 navigationController = navigationController,
-//                viewModel = mainAppFeatureViewModel,
-//                invoiceDetailsViewModel = invoiceDetailViewModel,
+                viewModel = mainAppFeatureViewModel,
+                invoiceDetailsViewModel = invoiceFeatureViewModel,
             )
         }
         composable(route = AppScreenPath.FoodScreen.name) {
             FoodScreen(
                 navHostController = navigationController,
-//                mainAppFeatureViewModel = mainAppFeatureViewModel,
-//                invoiceDetailViewModel,
+                mainAppFeatureViewModel = mainAppFeatureViewModel,
+                invoiceFeatureViewModel,
             )
         }
         composable(route = AppScreenPath.FoodAboutScreen.name) {
             FoodAboutScreen(
                 navHostController = navigationController,
-//                invoiceFeatureViewModel = invoiceDetailViewModel,
-//                mainAppFeatureViewModel = mainAppFeatureViewModel
+                invoiceFeatureViewModel = invoiceFeatureViewModel,
+                mainAppFeatureViewModel = mainAppFeatureViewModel
             )
         }
         composable(route = AppScreenPath.CartScreen.name) {
             InvoiceFeaturePage(
                 navHostController = navigationController,
-//                invoiceDetailViewModel
+                invoiceFeatureViewModel
             )
         }
     }
