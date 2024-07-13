@@ -29,11 +29,6 @@ class Application : Application() {}
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        val mainAppFeatureViewModel =
-            ViewModelProvider(this)[MainAppFeatureViewModel::class.java]
-
-
         setContent {
             FoodComposeTheme {
                 // A surface container using the 'background' color from the theme

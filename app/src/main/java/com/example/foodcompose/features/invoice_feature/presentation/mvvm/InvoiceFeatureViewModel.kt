@@ -49,6 +49,7 @@ class InvoiceFeatureViewModel @Inject constructor(
     }
 
     fun initLocalDatabase(context: Context) {
+        if (database != null) return
         database = LocalDatabase.getDatabase(context);
     }
 
